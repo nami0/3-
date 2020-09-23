@@ -18,21 +18,20 @@
     <div id="obniz-debug"></div>
     <h3>Connect From Your Browser</h3>
     <ol>
-      <li id="press"><p>Not Hanging</p></li>
-        <p id="lasttime1">オフラインです</p>
+      <li id="press1"><p>Not Hanging</p></li>
+       <p id="lasttime1">オフラインです</p>
       <li id="press2"><p>Not Hanging</p></li>
-      <p id="lasttime2">オフラインです</p>
+       <p id="lasttime2">オフラインです</p>
       <li id="press3"><p>Not Hanging</p></li>
+       <p id="lasttime3">オフラインです</p>
       <li id="press4"><p>Not Hanging</p></li>
+       <p id="lasttime4">オフラインです</p>
       <li id="press5"><p>Not Hanging</p></li>
+       <p id="lasttime5">オフラインです</p>
     </ol>
 
     <script>
       var obniz = new Obniz("6909-1887");
-      var preVisit;
-      var preHang1;
-
-      
 
       obniz.onconnect = async function() {
         var pressure = obniz.wired("FSR40X", {pin0:0, pin1:1});
@@ -43,83 +42,124 @@
 
         var press = await pressure.getWait();
 
-        const div = document.getElementById("press");
-        const div2 = document.getElementById("press2");
-        const div3 = document.getElementById("press3");
-        const div4 = document.getElementById("press4");
-        const div5 = document.getElementById("press5");
-
         obniz.display.clear();
 
         pressure.onchange = function(press){
           if (press > 250) {
             console.log(press)
-            div.innerHTML = '<p>Hanging</p>';
+            $("#press1").text("Hanging");
             cookieArr = $.cookie();
-            if (cookieArr['preHang1'] == null) {  //初訪問の時
+            if (cookieArr['preHang1'] == null) {
               getNowTime();
               preHang1 = nowTime;
               courseDate(preHang1);
               $.cookie('preHang1', preHang1);
-            } else {  //2回目以降の訪問の時
+              courseTime1 = 0;
+            } else {
               preHang1 = $.cookie('preHang1');
               courseDate(preHang1);
               courseTime1 = courseTime;
             }
             $("#lasttime1").text("服がかかった状態で"+ courseTime1 +"が経過しています");
           } else {
-            div.innerHTML = '<p>Not Hanging</p>';
+            $("#press1").text("Not Hanging");
             $.removeCookie('preHang1');
             $("#lasttime1").text("ハンガーが使用されていません");
           }
         };
-        
         pressure2.onchange = function(press){
           if (press > 250) {
             console.log(press)
-            div.innerHTML = '<p>Hanging</p>';
+            $("#press2").text("Hanging");
             cookieArr = $.cookie();
-            if (cookieArr['preHang2'] == null) {  //初訪問の時
+            if (cookieArr['preHang2'] == null) {
               getNowTime();
               preHang2 = nowTime;
               courseDate(preHang2);
               $.cookie('preHang2', preHang2);
-            } else {  //2回目以降の訪問の時
+              courseTime2 = 0;
+            } else {
               preHang2 = $.cookie('preHang2');
               courseDate(preHang2);
               courseTime2 = courseTime;
             }
             $("#lasttime2").text("服がかかった状態で"+ courseTime2 +"が経過しています");
           } else {
-            div.innerHTML = '<p>Not Hanging</p>';
+            $("#press2").text("Not Hanging");
             $.removeCookie('preHang2');
+            $("#lasttime2").text("ハンガーが使用されていません");
           }
         };
         pressure3.onchange = function(press){
           if (press > 250) {
-            div3.innerHTML = '<p>ON</p>';
+            console.log(press)
+            $("#press3").text("Hanging");
+            cookieArr = $.cookie();
+            if (cookieArr['preHang3'] == null) {
+              getNowTime();
+              preHang3 = nowTime;
+              courseDate(preHang3);
+              $.cookie('preHang3', preHang3);
+              courseTime3 = 0;
+            } else {
+              preHang3 = $.cookie('preHang3');
+              courseDate(preHang3);
+              courseTime3 = courseTime;
+            }
+            $("#lasttime3").text("服がかかった状態で"+ courseTime3 +"が経過しています");
           } else {
-            div3.innerHTML = '<p>OFF</p>';
+            $("#press3").text("Not Hanging");
+            $.removeCookie('preHang3');
+            $("#lasttime3").text("ハンガーが使用されていません");
           }
         };
         pressure4.onchange = function(press){
           if (press > 250) {
-            div4.innerHTML = '<p>ON</p>';
+            console.log(press)
+            $("#press4").text("Hanging");
+            cookieArr = $.cookie();
+            if (cookieArr['preHang4'] == null) {
+              getNowTime();
+              preHang4 = nowTime;
+              courseDate(preHang4);
+              $.cookie('preHang4', preHang4);
+              courseTime4 = 0;
+            } else {
+              preHang4 = $.cookie('preHang4');
+              courseDate(preHang4);
+              courseTime4 = courseTime;
+            }
+            $("#lasttime4").text("服がかかった状態で"+ courseTime4 +"が経過しています");
           } else {
-            div4.innerHTML = '<p>OFF</p>';
+            $("#press4").text("Not Hanging");
+            $.removeCookie('preHang4');
+            $("#lasttime4").text("ハンガーが使用されていません");
           }
-        };
+        };     
         pressure5.onchange = function(press){
           if (press > 250) {
-            div5.innerHTML = '<p>ON</p>';
+            console.log(press)
+            $("#press5").text("Hanging");
+            cookieArr = $.cookie();
+            if (cookieArr['preHang5'] == null) {
+              getNowTime();
+              preHang5 = nowTime;
+              courseDate(preHang5);
+              $.cookie('preHang5', preHang5);
+              courseTime5 = 0;
+            } else {
+              preHang5 = $.cookie('preHang5');
+              courseDate(preHang5);
+              courseTime5 = courseTime;
+            }
+            $("#lasttime5").text("服がかかった状態で"+ courseTime5 +"が経過しています");
           } else {
-            div5.innerHTML = '<p>OFF</p>';
+            $("#press5").text("Not Hanging");
+            $.removeCookie('preHang5');
+            $("#lasttime5").text("ハンガーが使用されていません");
           }
         };
-        
-        
-
-        
+             
       };
 
       //現在の時間を取得する関数
