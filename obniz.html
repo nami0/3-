@@ -93,7 +93,6 @@
           } else {
             div.innerHTML = '<p>Not Hanging</p>';
             $.removeCookie('preHang2');
-            $("#lasttime2").text("ハンガーが使用されていません");
           }
         };
         pressure3.onchange = function(press){
@@ -122,23 +121,6 @@
 
         
       };
-
-      /*
-      $(function(){
-        cookieArr = $.cookie();
-          if (cookieArr['preVisit'] == null) {  //初訪問の時
-            getNowTime();
-            preVisit = nowTime;
-            courseDate(preVisit);
-            $.cookie('preVisit', preVisit);
-          } else {  //2回目以降の訪問の時
-            preVisit = $.cookie('preVisit');
-            courseDate(preVisit);
-            $.cookie('preVisit', nowTime);
-          }
-          $("#lasttime").text("前回の訪問から"+ courseTime +"が経過しています！");
-      });
-      */
 
       //現在の時間を取得する関数
       function getNowTime(){
