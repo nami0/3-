@@ -20,14 +20,19 @@
     <ol>
       <li id="press1"><p>Not Hanging</p></li>
        <p id="lasttime1">オフラインです</p>
+       <p id="status1">Status : なし</p>
       <li id="press2"><p>Not Hanging</p></li>
        <p id="lasttime2">オフラインです</p>
+       <p id="status2">Status : なし</p>
       <li id="press3"><p>Not Hanging</p></li>
        <p id="lasttime3">オフラインです</p>
+       <p id="status3">Status : なし</p>
       <li id="press4"><p>Not Hanging</p></li>
        <p id="lasttime4">オフラインです</p>
+       <p id="status4">Status : なし</p>
       <li id="press5"><p>Not Hanging</p></li>
        <p id="lasttime5">オフラインです</p>
+       <p id="status5">Status : なし</p>
     </ol>
 
     <script>
@@ -45,122 +50,57 @@
         obniz.display.clear();
 
         pressure.onchange = function(press){
-          if (press > 250) {
-            console.log(press)
-            $("#press1").text("Hanging");
-            cookieArr = $.cookie();
-            if (cookieArr['preHang1'] == null) {
-              getNowTime();
-              preHang1 = nowTime;
-              courseDate(preHang1);
-              $.cookie('preHang1', preHang1);
-              courseTime1 = 0;
-            } else {
-              preHang1 = $.cookie('preHang1');
-              courseDate(preHang1);
-              courseTime1 = courseTime;
-            }
-            $("#lasttime1").text("服がかかった状態で"+ courseTime1 +"が経過しています");
-          } else {
-            $("#press1").text("Not Hanging");
-            $.removeCookie('preHang1');
-            $("#lasttime1").text("ハンガーが使用されていません");
-          }
+          pressAct(press,"#press1",'preHang1',"#lasttime1","#status1");
         };
         pressure2.onchange = function(press){
-          if (press > 250) {
-            console.log(press)
-            $("#press2").text("Hanging");
-            cookieArr = $.cookie();
-            if (cookieArr['preHang2'] == null) {
-              getNowTime();
-              preHang2 = nowTime;
-              courseDate(preHang2);
-              $.cookie('preHang2', preHang2);
-              courseTime2 = 0;
-            } else {
-              preHang2 = $.cookie('preHang2');
-              courseDate(preHang2);
-              courseTime2 = courseTime;
-            }
-            $("#lasttime2").text("服がかかった状態で"+ courseTime2 +"が経過しています");
-          } else {
-            $("#press2").text("Not Hanging");
-            $.removeCookie('preHang2');
-            $("#lasttime2").text("ハンガーが使用されていません");
-          }
+          pressAct(press,"#press2",'preHang2',"#lasttime2","#status2");
         };
         pressure3.onchange = function(press){
-          if (press > 250) {
-            console.log(press)
-            $("#press3").text("Hanging");
-            cookieArr = $.cookie();
-            if (cookieArr['preHang3'] == null) {
-              getNowTime();
-              preHang3 = nowTime;
-              courseDate(preHang3);
-              $.cookie('preHang3', preHang3);
-              courseTime3 = 0;
-            } else {
-              preHang3 = $.cookie('preHang3');
-              courseDate(preHang3);
-              courseTime3 = courseTime;
-            }
-            $("#lasttime3").text("服がかかった状態で"+ courseTime3 +"が経過しています");
-          } else {
-            $("#press3").text("Not Hanging");
-            $.removeCookie('preHang3');
-            $("#lasttime3").text("ハンガーが使用されていません");
-          }
+          pressAct(press,"#press3",'preHang3',"#lasttime3","#status3");
         };
         pressure4.onchange = function(press){
-          if (press > 250) {
-            console.log(press)
-            $("#press4").text("Hanging");
-            cookieArr = $.cookie();
-            if (cookieArr['preHang4'] == null) {
-              getNowTime();
-              preHang4 = nowTime;
-              courseDate(preHang4);
-              $.cookie('preHang4', preHang4);
-              courseTime4 = 0;
-            } else {
-              preHang4 = $.cookie('preHang4');
-              courseDate(preHang4);
-              courseTime4 = courseTime;
-            }
-            $("#lasttime4").text("服がかかった状態で"+ courseTime4 +"が経過しています");
-          } else {
-            $("#press4").text("Not Hanging");
-            $.removeCookie('preHang4');
-            $("#lasttime4").text("ハンガーが使用されていません");
-          }
+          pressAct(press,"#press4",'preHang4',"#lasttime4","#status4");
         };     
         pressure5.onchange = function(press){
-          if (press > 250) {
-            console.log(press)
-            $("#press5").text("Hanging");
-            cookieArr = $.cookie();
-            if (cookieArr['preHang5'] == null) {
-              getNowTime();
-              preHang5 = nowTime;
-              courseDate(preHang5);
-              $.cookie('preHang5', preHang5);
-              courseTime5 = 0;
-            } else {
-              preHang5 = $.cookie('preHang5');
-              courseDate(preHang5);
-              courseTime5 = courseTime;
-            }
-            $("#lasttime5").text("服がかかった状態で"+ courseTime5 +"が経過しています");
-          } else {
-            $("#press5").text("Not Hanging");
-            $.removeCookie('preHang5');
-            $("#lasttime5").text("ハンガーが使用されていません");
-          }
+          pressAct(press,"#press5",'preHang5',"#lasttime5","#status5");
         };
              
       };
+
+      function pressAct(press,press0,preHang0,lasttime0,status0) {
+        if (press > 220) {
+          $(press0).text("Hanging");
+          cookieArr = $.cookie();
+          if (cookieArr[preHang0] == null) {
+            getNowTime();
+            preHang = nowTime;
+            courseDate(preHang);
+            $.cookie(preHang0, preHang);
+            courseTime0 = 0;
+          } else {
+            preHang = $.cookie(preHang0);
+            courseDate(preHang);
+            courseTime0 = courseTime;
+          }
+          $(lasttime0).text("服がかかった状態で"+ courseTime0 +"が経過しています");
+          status(courseTime0,status0);//状況を表示する関数
+        } else {
+          $(press0).text("Not Hanging");
+          $.removeCookie(preHang0);
+          $(lasttime0).text("ハンガーが使用されていません");
+          $(status0).text("Status : なし");
+        }
+      }
+
+      //状況を表示する関数
+      function status (courseTime0,status0) {
+        courseTime0 = String(courseTime0);
+          day = courseTime0.substr(0,1);
+          daynum = Number(day);
+          if (daynum < 4) $(status0).text("Status : Good");
+          else if (daynum < 8) $(status0).text("Status : Danger");
+          else $(status0).text("Status : Bad");
+      }
 
       //現在の時間を取得する関数
       function getNowTime(){
